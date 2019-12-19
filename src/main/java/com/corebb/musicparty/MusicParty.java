@@ -2,6 +2,7 @@ package com.corebb.musicparty;
 
 import com.corebb.musicparty.blocks.ModBlocks;
 import com.corebb.musicparty.blocks.MusicPlayer;
+import com.corebb.musicparty.items.SDCard;
 import com.corebb.musicparty.setup.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -100,6 +101,7 @@ public class MusicParty
             Item.Properties properties = new Item.Properties()
                     .group(setup.itemGroup);
             itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.MusicPlayer,properties).setRegistryName("musicplayer"));
+            itemRegistryEvent.getRegistry().register(new SDCard());
         }
     }
 }

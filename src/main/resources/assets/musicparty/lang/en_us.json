@@ -1,5 +1,6 @@
 {
+  "item.musicparty.sdcard": "SD Card",
   "block.musicparty.musicplayer": "Music Player",
   "_comment": "Creative Tabs",
-  "itemGroup.mytutorial": "MusicParty"
+  "itemGroup.musicparty": "MusicParty"
 }
