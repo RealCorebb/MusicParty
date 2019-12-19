@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "musicparty:block/musicplayer"}
+  }
+}

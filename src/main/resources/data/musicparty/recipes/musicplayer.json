@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "musicparty",
+  "pattern": [
+    "xxx",
+    "x#x",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "forge:planks"
+    },
+    "#": {
+      "tag": "minecraft:jukebox"
+    }
+  },
+  "result": {
+    "item": "musicparty:musicplayer"
+  }
+}
