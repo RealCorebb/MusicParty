@@ -1,6 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "musicparty:block/musicplayer"
+    "particle": "musicparty:block/musicplayer",
+    "down": "musicparty:block/musicplayer",
+    "up": "musicparty:block/musicplayer_up",
+    "east": "musicparty:block/musicplayer",
+    "west": "musicparty:block/musicplayer",
+    "north": "musicparty:block/musicplayer",
+    "south": "musicparty:block/musicplayer"
   }
 }

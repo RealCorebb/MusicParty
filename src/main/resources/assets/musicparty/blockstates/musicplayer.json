@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": {"model": "musicparty:block/musicplayer"}
+    "facing=north": { "model": "musicparty:block/musicplayer" },
+    "facing=south": { "model": "musicparty:block/musicplayer", "y": 180 },
+    "facing=west": { "model": "musicparty:block/musicplayer", "y": 270 },
+    "facing=east": { "model": "musicparty:block/musicplayer", "y": 90 },
+    "facing=up": { "model": "musicparty:block/musicplayer", "x": -90 },
+    "facing=down": { "model": "musicparty:block/musicplayer", "x": 90 }
   }
 }

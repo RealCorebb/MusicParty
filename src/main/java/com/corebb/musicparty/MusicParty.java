@@ -2,14 +2,20 @@ package com.corebb.musicparty;
 
 import com.corebb.musicparty.blocks.ModBlocks;
 import com.corebb.musicparty.blocks.MusicPlayer;
+import com.corebb.musicparty.blocks.MusicPlayerContainer;
+import com.corebb.musicparty.blocks.MusicPlayerTile;
 import com.corebb.musicparty.items.SDCard;
 import com.corebb.musicparty.setup.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -33,6 +39,7 @@ import java.util.stream.Collectors;
 @Mod("musicparty")
 public class MusicParty
 {
+    public static String MODID="musicparty";
     public static IProxy proxy = DistExecutor.runForDist(() -> () ->new ClientProxy(),() -> () -> new ServerProxy());
     public static ModSetup setup =new ModSetup();
 
@@ -102,6 +109,18 @@ public class MusicParty
                     .group(setup.itemGroup);
             itemRegistryEvent.getRegistry().register(new BlockItem(ModBlocks.MusicPlayer,properties).setRegistryName("musicplayer"));
             itemRegistryEvent.getRegistry().register(new SDCard());
+        }
+
+        @SubscribeEvent
+        public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> tileRegistryEvent){
+            tileRegistryEvent.getRegistry().register(TileEntityType.Builder.create(MusicPlayerTile::new, ModBlocks.MusicPlayer).build(null).setRegistryName("musicplayer"));
+        }
+        @SubscribeEvent
+        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
+            event.getRegistry().register(IForgeContainerType.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new MusicPlayerContainer(windowId, MusicParty.proxy.getClientWorld(), pos, inv,MusicParty.proxy.getClientPlayer());
+            }).setRegistryName("musicplayer"));
         }
     }
 }

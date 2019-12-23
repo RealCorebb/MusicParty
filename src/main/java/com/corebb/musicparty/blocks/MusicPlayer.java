@@ -1,5 +1,6 @@
 package com.corebb.musicparty.blocks;
 
+import com.corebb.musicparty.gui.musicplayer_gui;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -53,18 +54,20 @@ public class MusicPlayer extends Block{
         }
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result) {
         if (!world.isRemote) {
             TileEntity tileEntity = world.getTileEntity(pos);
             if (tileEntity instanceof INamedContainerProvider) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+               // NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider) tileEntity, tileEntity.getPos());
+                musicplayer_gui.open();
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
-            return ActionResultType.CONSUME;
+            return ActionResultType.SUCCESS;
         }
         return super.func_225533_a_(state,world,pos,player,hand,result);
     }
+
     public static Direction getFacingFromEntity(BlockPos clickedBlock, LivingEntity entity) {
         return Direction.getFacingFromVector((float) (entity.lastTickPosX - clickedBlock.getX()), (float) (entity.lastTickPosY - clickedBlock.getY()), (float) (entity.lastTickPosZ - clickedBlock.getZ()));
     }

@@ -1,6 +1,7 @@
 package com.corebb.musicparty.gui;
 
 import com.corebb.musicparty.MusicParty;
+import com.corebb.musicparty.blocks.MusicPlayerTile;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,9 +10,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
-
 public class musicplayer_gui extends Screen {
-
     private static final int WIDTH = 179;
     private static final int HEIGHT = 68;
     private  TextFieldWidget streamurl;
@@ -29,7 +28,7 @@ public class musicplayer_gui extends Screen {
         streamurl = new TextFieldWidget(this.font,relX+10,relY+10,160,20,"");
         streamurl.setMaxStringLength(1000);
         this.children.add(streamurl);
-        addButton(new Button(relX + 10, relY + 37, 160, 20, "Play", button ->{}));
+        addButton(new Button(relX + 10, relY + 37, 160, 20, "Play", button ->{MusicPlayerTile.play("mp3",streamurl.getText());} ));
     }
 
     @Override
@@ -38,7 +37,7 @@ public class musicplayer_gui extends Screen {
     }
 
     private void spawn(String id) {
-      //  Networking.INSTANCE.sendToServer(new PacketSpawn(id, minecraft.player.dimension, minecraft.player.getPosition()));
+      // Networking.INSTANCE.sendToServer(new PacketSpawn(id, minecraft.player.dimension, minecraft.player.getPosition()));
         minecraft.displayGuiScreen(null);
     }
 
